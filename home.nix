@@ -1,10 +1,34 @@
 { config, pkgs, ... }:
 
+let
+  customNeovim = import ./applications/nvim/nvim.nix;
+  customTmux = import ./applications/tmux/tmux.nix;
+in
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "alpha";
   home.homeDirectory = "/home/alpha";
+
+  home.shellAliases = {
+      l = "exa --icons --all";
+      ls = "exa --icons";
+      ll = "exa --icons --all --long";
+  };
+
+  home.sessionVariables = {
+    NIXOS_CONFIG_DIR = "${config.home.homeDirectory}/flake";
+  };
+
+  programs.zsh = {
+    enable = true;
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ "git" "vi-mode" "docker" "fzf" "gh" ];
+      theme = "af-magic";
+    };
+    enableSyntaxHighlighting = true;
+  };
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -19,15 +43,16 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  home.packages = with pkgs; [ htop godot tmuxPlugins.sensible tmuxPlugins.fzf-tmux-url];
+  home.packages = with pkgs; [ htop godot fzf ];
 
   home.file = {
     "${config.xdg.configHome}/kitty" = {
       source = ./applications/kitty;
       recursive = true;
     };
-    "${config.home.homeDirectory}/.tmux.conf" = {
-      source = ./applications/tmux/tmux.conf;
+    "${config.xdg.configHome}/nvim/after" = {
+      source = ./applications/nvim/config;
+      recursive = true;
     };
   };
 
@@ -35,11 +60,13 @@
     enable = true;
     userName = "Ariel D'Alessandro";
     userEmail = "dalessandro.ariel@gmail.com";
+    extraConfig = {
+      init = {
+        defaultBranch = "main";
+      };
+    };
   };
 
-  programs.tmux.extraConfig = ''
-    run-shell ${pkgs.tmuxPlugins.sensible}/share/tmux-plugins/sensible/sensible.tmux
-    run-shell ${pkgs.tmuxPlugins.fzf-tmux-url}/share/tmux-plugins/fzf-tmux-url/fzf-url.tmux
-    set -g @fzf-url-bind 'm'
-  '';
+  programs.tmux = customTmux pkgs;
+  programs.neovim = customNeovim pkgs;
 }

@@ -1,41 +1,21 @@
-############################
-##  Configuration
-############################
-
-## use 256 term for pretty colors
+pkgs:
+{
+    enable = true;
+    baseIndex = 1;
+    clock24 = true;
+    keyMode = "vi";
+    plugins = with pkgs;[
+      tmuxPlugins.sensible
+      tmuxPlugins.tmux-fzf
+      {
+        plugin = tmuxPlugins.fzf-tmux-url;
+        extraConfig = "set -g @fzf-url-bind 'x'";
+      }
+    ];
+    extraConfig = ''
 set -g default-terminal "screen-256color"
-
-## Default bar color
-## set-option -g status-style bg='#1b1c36',fg='#ecf0c1'
-
-## Active Pane
-## set -g pane-active-border-style "fg=#5ccc96"
-
-## Inactive Pane
-## set -g pane-border-style "fg=#686f9a"
-
-## Active window
-## set-option -g window-status-current-style bg='#686f9a',fg='#ffffff'
-
-## Message
-## set-option -g message-style bg='#686f9a',fg='#ecf0c1'
-## set-option -g message-command-style bg='#686f9a',fg='#ecf0c1'
-
-## When Commands are run
-## set -g message-style "fg=#0f111b,bg=#686f9a"
-
 set -g terminal-overrides ',xterm-256color:Tc'
-
-## set the zsh as default shell
-## set-option -g default-shell /usr/bin/zsh
-# set-option -g default-command "reattach-to-user-namespace -l zsh"
-## increase scroll-back history
 set -g history-limit 8000
-
-#set-option -g status-position bottom
-
-## use vim key bindings
-setw -g mode-keys vi
 
 ## copy to system clipboard
 bind-key -T copy-mode-vi v send-keys -X begin-selection
@@ -115,47 +95,22 @@ bind r source-file ~/.tmux.conf \; display "Reloaded!"
 
 ## Popup stuff
 bind-key S run-shell 'tmux popup -E tshort select'
-## bind-key s run-shell 'tmux popup -E tmux_fuzzy_session'
 bind-key ` switch-client -t Main
 
 bind-key y new-window -n Wiki 'nvim -c VimwikiIndex'
 
 bind-key u run-shell  'tmux popup -E tshort bind -key=1'
-# bind-key C-u run-shell  'tmux_bind_session u #S'
 bind-key i run-shell  'tmux popup -E tshort bind -key=2'
-# bind-key C-i run-shell  'tmux_bind_session i #S'
 bind-key o run-shell  'tmux popup -E tshort bind -key=3'
-# bind-key C-o run-shell  'tmux_bind_session o #S'
 bind-key p run-shell  'tmux popup -E tshort bind -key=4'
-# bind-key C-p run-shell  'tmux_bind_session p #S'
 
 bind-key b set -g status
 
 # # Status update interval
 set -g status-interval 1
 
-# # Clock mode
-# set -g clock-mode-colour colour24
-# set -g clock-mode-style 24
-
-# # Message
-# set -g message-style bg=colour24,fg=black
-
-# # Command message
-# set -g message-command-style bg=colour233,fg=black
-
-# # Mode
-# set -g mode-style bg=colour24,fg=colour231
-
 # Will go next session on killing a session
 set-option -g detach-on-destroy off
-
-## Plugins
-# set -g @plugin 'tmux-plugins/tpm'
-# set -g @plugin 'tmux-plugins/tmux-sensible'
-
-# set -g @plugin 'odedlaz/tmux-onedark-theme'
-# set -g @onedark_widgets "#(tshort list)"
 
 set -g mode-style "fg=#719cd6,bg=#131a24"
 set -g message-style "fg=#719cd6,bg=#131a24"
@@ -176,12 +131,5 @@ setw -g window-status-separator ""
 setw -g window-status-style "NONE,fg=#71839b,bg=#131a24"
 setw -g window-status-format "#[fg=#131a24,bg=#131a24,nobold,nounderscore,noitalics]#[default] #I  #W #F #[fg=#131a24,bg=#131a24,nobold,nounderscore,noitalics]"
 setw -g window-status-current-format "#[fg=#131a24,bg=#212e3f,nobold,nounderscore,noitalics]#[fg=#719cd6,bg=#212e3f,bold] #I  #W #F #[fg=#212e3f,bg=#131a24,nobold,nounderscore,noitalics]"
-
-# set -g @plugin 'wfxr/tmux-fzf-url'
-set -g @plugin 'sainnhe/tmux-fzf'
-
-# set -g @tpm-install 'B'
-# set -g @tpm-update 'X'
-# set -g @fzf-url-bind 'm'
-
-# run -b '~/.tmux/plugins/tpm/tpm'
+    '';
+  }

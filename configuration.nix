@@ -6,7 +6,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
@@ -63,8 +64,8 @@
     windowManager.awesome = {
       enable = true;
       luaModules = with pkgs.luaPackages; [
-      	luarocks
-				luadbi-mysql
+        luarocks
+        luadbi-mysql
       ];
     };
 
@@ -81,6 +82,7 @@
   };
 
   virtualisation.vmware.guest.enable = true;
+  virtualisation.docker.enable = true;
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -109,21 +111,13 @@
   users.users.alpha = {
     isNormalUser = true;
     description = "Alpha";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  users.defaultUserShell = pkgs.zsh;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    neovim 
-    kitty
-    wget
-    firefox
-    tmux
-    discord
+  fonts.fonts = with pkgs; [
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
 
   environment.variables.EDITOR = "nvim";
@@ -131,25 +125,25 @@
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
       url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-      sha256 = "1wkvz48zdwb111mqyihfmh7is595hb6m59rw6im85d0a8lfxqpk9";
+      sha256 = "0fnv96ibcb5950bxssm2ihkg0f225ixnzwv77xms134f228lpj0v";
     }))
     (self: super: {
       neovim = super.neovim.override {
- 	viAlias = true;
-	vimAlias = true;
-	withPython3 = true;
-	withNodeJs = true;
+        viAlias = true;
+        vimAlias = true;
+        withPython3 = true;
+        withNodeJs = true;
       };
     })
 
     (self: super: {
       discord = super.discord.overrideAttrs (
         _: {
-	  src = builtins.fetchTarball {
-	    url = "https://discord.com/api/download?platform=linux&format=tar.gz";
-	    sha256 = "0hdgif8jpp5pz2c8lxas88ix7mywghdf9c9fn95n0dwf8g1c1xbb";
-	  };
-	}
+          src = builtins.fetchTarball {
+            url = "https://discord.com/api/download?platform=linux&format=tar.gz";
+            sha256 = "0hdgif8jpp5pz2c8lxas88ix7mywghdf9c9fn95n0dwf8g1c1xbb";
+          };
+        }
       );
     })
   ];
