@@ -11,6 +11,12 @@
       ./hardware-configuration.nix
     ];
 
+  nixpkgs.config = {
+    packageOverrides = pkgs: {
+        tshort = pkgs.callPackage (builtins.toPath "${config.home.homeDirectory}/flake/pkgs/tshort") {};
+    };
+};
+
   # Bootloader.
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
