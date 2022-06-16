@@ -123,19 +123,6 @@
   environment.variables.EDITOR = "nvim";
 
   nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-      sha256 = "0fnv96ibcb5950bxssm2ihkg0f225ixnzwv77xms134f228lpj0v";
-    }))
-    (self: super: {
-      neovim = super.neovim.override {
-        viAlias = true;
-        vimAlias = true;
-        withPython3 = true;
-        withNodeJs = true;
-      };
-    })
-
     (self: super: {
       discord = super.discord.overrideAttrs (
         _: {

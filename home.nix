@@ -20,6 +20,8 @@ in
     NIXOS_CONFIG_DIR = "${config.home.homeDirectory}/flake";
   };
 
+  services.picom.enable = true;
+
   programs.zsh = {
     enable = true;
     oh-my-zsh = {
@@ -28,6 +30,10 @@ in
       theme = "af-magic";
     };
     enableSyntaxHighlighting = true;
+  };
+
+  programs.go = {
+      enable = true;
   };
 
   # This value determines the Home Manager release that your
