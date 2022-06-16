@@ -24,9 +24,6 @@
     bitwarden
     bitwarden-cli
 
-    # GoLang
-    go
-
     # PHP
     php81
     php81Packages.composer
