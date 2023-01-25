@@ -42,7 +42,7 @@
 
   programs.git = {
     enable = true;
-    userName = "adalessa";
+    userName = "Ariel D'Alessandro";
     userEmail = "dalessandro.ariel@gmal.com";
     extraConfig = {
       init = {defaultBranch = "main";};
