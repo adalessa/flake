@@ -21,7 +21,7 @@
     # pkgs = nixpkgs.legacyPackages.${system};
     pkgs = import nixpkgs {
       inherit system;
-      overlays = [ nixgl.overlay ];
+      overlays = [nixgl.overlay];
     };
   in {
     homeConfigurations.alpha = home-manager.lib.homeManagerConfiguration {
