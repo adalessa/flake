@@ -23,17 +23,18 @@
       inherit system;
       overlays = [nixgl.overlay];
     };
+    stateVersion = "22.11";
     alpha = {
       home.username = "alpha";
       home.homeDirectory = "/home/alpha";
-      home.stateVersion = "22.11";
+      home.stateVersion = stateVersion;
       programs.home-manager.enable = true;
       imports = [./packages.nix ./programs.nix ./alpha.nix];
     };
     adalessa = {
       home.username = "adalessa";
       home.homeDirectory = "/home/adalessa/";
-      home.stateVersion = "22.11";
+      home.stateVersion = stateVersion;
       programs.home-manager.enable = true;
       imports = [./packages.nix ./programs.nix ./work.nix];
     };
