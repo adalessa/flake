@@ -15,7 +15,6 @@
     pkgs.bat
     pkgs.jq
     pkgs.ripgrep
-    pkgs.tmux
     pkgs.screenkey
     #formatter for nix
     pkgs.alejandra
