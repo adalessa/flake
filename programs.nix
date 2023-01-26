@@ -43,7 +43,7 @@
   programs.git = {
     enable = true;
     userName = "Ariel D'Alessandro";
-    userEmail = "dalessandro.ariel@gmal.com";
+    userEmail = "dalessandro.ariel@gmail.com";
     extraConfig = {
       init = {defaultBranch = "main";};
       branch = {autosetuprebase = "always";};
