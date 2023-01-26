@@ -21,26 +21,33 @@
     # pkgs = nixpkgs.legacyPackages.${system};
     pkgs = import nixpkgs {
       inherit system;
-      overlays = [ nixgl.overlay ];
+      overlays = [nixgl.overlay];
+    };
+    stateVersion = "22.11";
+    alpha = {
+      home.username = "alpha";
+      home.homeDirectory = "/home/alpha";
+      home.stateVersion = stateVersion;
+      programs.home-manager.enable = true;
+      imports = [./packages.nix ./programs.nix ./alpha.nix];
+    };
+    adalessa = {
+      home.username = "adalessa";
+      home.homeDirectory = "/home/adalessa/";
+      home.stateVersion = stateVersion;
+      programs.home-manager.enable = true;
+      imports = [./packages.nix ./programs.nix ./work.nix];
     };
   in {
-    homeConfigurations.alpha = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      # Specify your home configuration modules here, for example,
-      # the path to your home.nix.
-      modules = [./home-alpha.nix];
-
-      # Optionally use extraSpecialArgs
-      # to pass through arguments to home.nix
-    };
-    homeConfigurations.work = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      # Specify your home configuration modules here, for example,
-      # the path to your home.nix.
-      modules = [./home-work.nix];
-
-      # Optionally use extraSpecialArgs
-      # to pass through arguments to home.nix
+    homeConfigurations = {
+      alpha = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [alpha];
+      };
+      adalessa = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [adalessa];
+      };
     };
   };
 }
