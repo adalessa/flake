@@ -38,13 +38,15 @@
       imports = [./packages.nix ./programs.nix ./work.nix];
     };
   in {
-    homeConfigurations.alpha = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      modules = [alpha];
-    };
-    homeConfigurations.adalessa = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      modules = [adalessa];
+    homeConfigurations = {
+      alpha = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [alpha];
+      };
+      adalessa = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [adalessa];
+      };
     };
   };
 }
