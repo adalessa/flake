@@ -23,24 +23,28 @@
       inherit system;
       overlays = [nixgl.overlay];
     };
+    alpha = {
+      home.username = "alpha";
+      home.homeDirectory = "/home/alpha";
+      home.stateVersion = "22.11";
+      programs.home-manager.enable = true;
+      imports = [./packages.nix ./programs.nix ./alpha.nix];
+    };
+    adalessa = {
+      home.username = "adalessa";
+      home.homeDirectory = "/home/adalessa/";
+      home.stateVersion = "22.11";
+      programs.home-manager.enable = true;
+      imports = [./packages.nix ./programs.nix ./work.nix];
+    };
   in {
     homeConfigurations.alpha = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      # Specify your home configuration modules here, for example,
-      # the path to your home.nix.
-      modules = [./home-alpha.nix];
-
-      # Optionally use extraSpecialArgs
-      # to pass through arguments to home.nix
+      modules = [alpha];
     };
-    homeConfigurations.work = home-manager.lib.homeManagerConfiguration {
+    homeConfigurations.adalessa = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      # Specify your home configuration modules here, for example,
-      # the path to your home.nix.
-      modules = [./home-work.nix];
-
-      # Optionally use extraSpecialArgs
-      # to pass through arguments to home.nix
+      modules = [adalessa];
     };
   };
 }
