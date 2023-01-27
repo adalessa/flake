@@ -6,6 +6,7 @@
 }: let
   nixGLWrap = import ./nixgl.nix pkgs;
 in {
+  fonts.fontconfig.enable = true;
   programs.kitty = {
     enable = true;
     package = nixGLWrap pkgs.kitty;
@@ -13,6 +14,7 @@ in {
     font = {
       name = "Victor Mono Bold";
       size = 12;
+      package = pkgs.victor-mono;
     };
     keybindings = {
       "ctrl+f>1" = "set_font_size 12";

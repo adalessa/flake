@@ -21,5 +21,6 @@
     # zsh needs
     pkgs.zsh-syntax-highlighting
     pkgs.nix-zsh-completions
+    (pkgs.nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
   ];
 }
