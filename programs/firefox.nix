@@ -9,4 +9,10 @@
       "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
     };
   };
+
+  extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+    bitwarden
+    ublock-origin
+    privacy-badger
+  ];
 }

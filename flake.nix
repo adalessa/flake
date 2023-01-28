@@ -9,19 +9,21 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nur.url = "github:nix-community/nur";
   };
 
   outputs = {
     nixpkgs,
     home-manager,
     nixgl,
+    nur,
     ...
   }: let
     system = "x86_64-linux";
     # pkgs = nixpkgs.legacyPackages.${system};
     pkgs = import nixpkgs {
       inherit system;
-      overlays = [nixgl.overlay];
+      overlays = [nixgl.overlay nur.overlay];
     };
     stateVersion = "22.11";
     alpha = {
