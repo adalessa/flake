@@ -25,16 +25,20 @@
     };
     stateVersion = "22.11";
     alpha = {
-      home.username = "alpha";
-      home.homeDirectory = "/home/alpha";
-      home.stateVersion = stateVersion;
+      home = {
+        username = "alpha";
+        homeDirectory = "/home/alpha";
+        stateVersion = stateVersion;
+      };
       programs.home-manager.enable = true;
       imports = [./packages.nix ./programs.nix ./alpha.nix];
     };
     adalessa = {
-      home.username = "adalessa";
-      home.homeDirectory = "/home/adalessa/";
-      home.stateVersion = stateVersion;
+      home = {
+        username = "adalessa";
+        homeDirectory = "/home/adalessa/";
+        stateVersion = stateVersion;
+      };
       programs.home-manager.enable = true;
       imports = [./packages.nix ./programs.nix ./work.nix];
     };
