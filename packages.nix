@@ -15,6 +15,7 @@
     pkgs.bat
     pkgs.jq
     pkgs.ripgrep
+    pkgs.fd
     pkgs.screenkey
     #formatter for nix
     pkgs.alejandra
