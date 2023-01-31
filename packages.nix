@@ -20,6 +20,9 @@
     #formatter for nix
     pkgs.alejandra
     # zsh needs
+    pkgs.lua52Packages.luacheck
+    pkgs.stylua
+
     pkgs.zsh-syntax-highlighting
     pkgs.nix-zsh-completions
     (pkgs.nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
