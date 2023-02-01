@@ -9,6 +9,7 @@
     return {
       font = wezterm.font("Victor Mono"),
       color_scheme = "tokyonight",
+      audible_bell = "Disabled",
       hide_tab_bar_if_only_one_tab = true,
       default_prog = { "zsh", "--login", "-c", "tmux new-session -A -s Main" },
     }
