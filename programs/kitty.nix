@@ -4,7 +4,7 @@
 }: {
   enable = true;
   package = nixGLWrap pkgs.kitty;
-  theme = "Tokyo Night";
+  theme = "Catppuccin-Mocha";
   font = {
     name = "Victor Mono Bold";
     size = 12;
