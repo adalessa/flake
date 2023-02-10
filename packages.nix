@@ -29,6 +29,6 @@
 
     pkgs.zsh-syntax-highlighting
     pkgs.nix-zsh-completions
-    (pkgs.nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
+    (pkgs.nerdfonts.override {fonts = ["NerdFontsSymbolsOnly" "JetBrainsMono"];})
   ];
 }
