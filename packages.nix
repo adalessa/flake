@@ -1,4 +1,9 @@
-{config, pkgs, lib, ...}:{
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   home.packages = [
     pkgs.lazygit
     pkgs.gpick
@@ -23,12 +28,14 @@
     pkgs.lua52Packages.luacheck
     pkgs.stylua
 
-    pkgs.zathura pkgs.pandoc pkgs.texlive.combined.scheme-small
+    pkgs.zathura
+    pkgs.pandoc
+    pkgs.texlive.combined.scheme-small
 
     pkgs.xdotool
 
     pkgs.zsh-syntax-highlighting
     pkgs.nix-zsh-completions
-    (pkgs.nerdfonts.override {fonts = ["NerdFontsSymbolsOnly" "JetBrainsMono"];})
+    (pkgs.nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
   ];
 }
