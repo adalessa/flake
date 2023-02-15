@@ -37,5 +37,6 @@
     pkgs.zsh-syntax-highlighting
     pkgs.nix-zsh-completions
     (pkgs.nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
+    pkgs.noto-fonts-emoji
   ];
 }

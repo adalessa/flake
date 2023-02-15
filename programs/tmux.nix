@@ -7,7 +7,7 @@
   baseIndex = 1;
   shortcut = "a";
   extraConfig = ''
-    set -g terminal-overrides ',kitty:Tc'
+    set-option -sa terminal-features ',kitty:RGB'
 
     bind-key -T copy-mode-vi v send-keys -X begin-selection
     bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'xclip -in -selection clipboard'

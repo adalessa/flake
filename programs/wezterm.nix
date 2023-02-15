@@ -9,10 +9,12 @@
     return {
       font = wezterm.font_with_fallback {
         { family = "Victor Mono", weight = "DemiBold" },
-        "Symbols Nerd Font Mono"
+        "Symbols Nerd Font Mono",
+        "Noto Color Emoji",
       },
       color_scheme = "tokyonight",
       audible_bell = "Disabled",
+      window_background_opacity = 0.8,
       hide_tab_bar_if_only_one_tab = true,
       default_prog = { "zsh", "--login", "-c", "tmux new-session -A -s Main" },
     }
