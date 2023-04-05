@@ -49,8 +49,8 @@
     ## bind-key s run-shell 'tmux popup -E tmux_fuzzy_session'
     bind-key ` new-session -A -s Main -c ~
 
-    # Open mind
-    bind-key y new-window -n Mind 'nvim -c MindOpenMain'
+    # Open vimwiki
+    bind-key y new-window -n Mind 'nvim -c VimwikiIndex'
 
     bind-key u run-shell  'tmux popup -E tshort bind 1'
     # bind-key C-u run-shell  'tmux_bind_session u #S'
@@ -84,7 +84,7 @@
     set -g status-left-style NONE
     set -g status-right-style NONE
     set -g status-left "#[fg=#719cd6,bold] #S #[fg=#719cd6,nobold,nounderscore,noitalics]"
-    set -g status-right "#[fg=#131a24,nobold,nounderscore,noitalics]#[fg=#719cd6] #(tshort list) #[fg=#212e3f,nobold,nounderscore,noitalics]#[fg=#719cd6] %Y-%m-%d  %I:%M %p #[fg=#719cd6,nobold,nounderscore,noitalics]#[fg=#719cd6,bold] #h "
+    set -g status-right "#[fg=#719cd6] #(tshort list) #[fg=#719cd6,nobold,nounderscore,noitalics]#[fg=#719cd6,bold] #h "
     setw -g window-status-activity-style "underscore,fg=#71839b"
     setw -g window-status-separator ""
     setw -g window-status-style "NONE,fg=#71839b"
