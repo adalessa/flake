@@ -17,8 +17,8 @@
       audible_bell = "Disabled",
       window_decorations = "RESIZE",
       window_padding = {
-        left = 4,
-        right = 4,
+        left = 2,
+        right = 2,
         top = 4,
         bottom = 0,
       },
